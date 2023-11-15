@@ -1,0 +1,166 @@
+.menuToggleIcon {
+  cursor: pointer;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidenav {
+  overflow-y: scroll;
+  height: 82vh;
+
+  .default-bg {
+    background: #022d62;
+  }
+
+  .items {
+    cursor: pointer;
+    border-bottom: 2px solid rgba(225, 225, 225, 0.2);
+    &:hover,
+    &:active,
+    &:focus {
+      background: #022d62;
+    }
+  }
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 30px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+* {
+  font-family: sora;
+}
+
+.bg-1 {
+  background: #31324c;
+}
+
+.bg-2 {
+  background: #070825;
+}
+
+.layout {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.accordion-item {
+  .accordion-header {
+    button {
+      background: transparent;
+      color: white;
+    }
+  }
+}
+
+.dataDiv {
+  height: 82vh;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 30px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.accordion-button::after {
+  content: '';
+  background: url('../../public/images/Vector (1).png');
+  color: white;
+  display: block;
+  width: 15px;
+  height: 10px;
+  background-repeat: no-repeat;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background: url('../../public/images/Vector (1).png');
+  background-repeat: no-repeat;
+}
+
+.search_input {
+  input {
+    caret-color: #022d62;
+    background: rgba(225, 225, 225, 0.3);
+    color: white;
+    width: 50%;
+    &::placeholder {
+      color: rgba(225, 225, 225, 0.6);
+    }
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.category-div {
+  input {
+    background: rgb(225, 225, 225, 0.2);
+    border: 0;
+    border-bottom: 2px solid rgb(225, 225, 225, 0.5);
+    border-radius: 4px;
+    &::placeholder {
+      color: rgba(225, 225, 225, 0.8);
+      font-weight: 200;
+    }
+    &:focus {
+      background: #022d62;
+    }
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.update-model {
+  .modal-content {
+    background: rgb(0, 0, 0, 0.4);
+    border: 1px solid white;
+    color: white;
+    .modal-body {
+      input {
+        background: transparent;
+        border:0;
+        border-bottom: 1px solid white;
+        border-radius: 0;
+        color: white;
+        &::placeholder {
+          color: white;
+        }
+      }
+    }
+  }
+}
