@@ -8,25 +8,26 @@ import { Button, Col, Row, Table } from 'react-bootstrap';
 function ViewCategory({ ViewCategoryData }) {
   const [show, setShow] = useState(false);
   const [updateId, setUpdateId] = useState(0);
-  const [selectDeleteIds, setDeleteIds] = useState([]);
+  const [selectIds, setIds] = useState([]);
   const updateData = (i) => {
     setUpdateId(i);
     setShow(true);
   };
 
+
   let GetDeleteId = (getdeleteId) => {
-    if (!selectDeleteIds.includes(getdeleteId)) {
-      selectDeleteIds.push(getdeleteId);
+    if (!selectIds.includes(getdeleteId)) {
+      selectIds.push(getdeleteId);
     }
     else {
-      selectDeleteIds.splice(selectDeleteIds.indexOf(getdeleteId), 1);
+      selectIds.splice(selectIds.indexOf(getdeleteId), 1);
     }
-    setDeleteIds(selectDeleteIds);
+    setIds(selectIds);
   };
 
   let handleDelete = async () => {
     await axios
-      .delete(`http://localhost:5000/api/website/categories/delete/${selectDeleteIds}`)
+      .delete(`http://localhost:5000/api/website/categories/delete/${selectIds}`)
       .then((res) => {
         console.log(res.data);
       })
@@ -34,6 +35,20 @@ function ViewCategory({ ViewCategoryData }) {
         console.log(error);
       });
   };
+
+  const handleToggleStatus = (id = '') => {
+    let sendids;
+    if (typeof(id) == 'number') {
+      sendids = id
+    } else {
+      sendids = selectIds
+    }
+    axios.put(`http://localhost:5000/api/website/categories/statusupdate/${sendids}`).then((result) => {
+
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
 
   return (
     <>
@@ -49,15 +64,15 @@ function ViewCategory({ ViewCategoryData }) {
             </Col>
             <Col className="col-6">
               <div className="d-flex justify-content-end align-items-center">
-                <FontAwesomeIcon icon={faRepeat} width={25} height={25} style={{ pointerEvents: ((selectDeleteIds.length) === 0) ? 'none' : 'auto' }}
-                  className={`fs-6 cursor-pointer mb-2 bg-1 p-2 rounded me-3 ${(selectDeleteIds.length) == 0 ? 'opacity-25' : 'opacity-100'}`} />
+                <FontAwesomeIcon icon={faRepeat} width={25} height={25} style={{ pointerEvents: ((selectIds.length) === 0) ? 'none' : 'auto' }}
+                  className={`fs-6 cursor-pointer mb-2 bg-1 p-2 rounded me-3 ${(selectIds.length) == 0 ? 'opacity-25' : 'opacity-100'}`} onClick={handleToggleStatus} />
                 <FontAwesomeIcon
                   icon={faTrashCan}
-                  className={`fs-4 cursor-pointer mb-2 ${(selectDeleteIds.length) == 0 ? 'opacity-25' : 'opacity-100'}`}
+                  className={`fs-4 cursor-pointer mb-2 ${(selectIds.length) == 0 ? 'opacity-25' : 'opacity-100'}`}
                   width={30}
                   height={30}
                   onClick={handleDelete}
-                  style={{ pointerEvents: ((selectDeleteIds.length) === 0) ? 'none' : 'auto' }}
+                  style={{ pointerEvents: ((selectIds.length) === 0) ? 'none' : 'auto' }}
                 />
               </div>
             </Col>
@@ -107,12 +122,9 @@ function ViewCategory({ ViewCategoryData }) {
                           </Button>
                         </td>
                         <td className="text-center bg-transparent">
-                          {(v.status) ?
-                            <Button className='bg-primary border-0'>
-                              active
-                            </Button> : <Button className='border-0 bg-danger'>
-                              inactive
-                            </Button>}
+                          <Button className={`border-0 ${(v.status) ? 'bg-primary' : 'bg-danger'}`} onClick={() => handleToggleStatus(v.id)}>
+                            {(v.status) ? 'active' : 'inactive'}
+                          </Button>
                         </td>
                       </tr>
                     </>

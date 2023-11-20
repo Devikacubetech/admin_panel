@@ -10,7 +10,6 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 
 function Topbar() {
   const { setNav, nav } = useContext(Context);
-
   return (
     <section className="bg-2 topnavbar shadow">
       <Row className=" m-0 py-3">

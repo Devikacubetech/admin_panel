@@ -1,7 +1,7 @@
 import React from 'react';
 import { Accordion } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFillDrip, faGauge } from '@fortawesome/free-solid-svg-icons';
+import { faFillDrip, faGauge, faImage } from '@fortawesome/free-solid-svg-icons';
 
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ function Main() {
     <div className="shadow sidenav border rounded-3 bg-2">
       <Link href="/">
         <div className={router == '/' ? ' ps-4 py-3 items text-white default-bg' : 'ps-4 py-3 items text-white '}>
-          <FontAwesomeIcon icon={faGauge} style={{ color: '#2f74c8' }} width={25} height={25}/>
+          <FontAwesomeIcon icon={faGauge} style={{ color: '#2f74c8' }} width={25} height={25} />
           <span className="ms-2">Dashbord</span>
         </div>
       </Link>
@@ -20,11 +20,10 @@ function Main() {
       <Accordion className="border-0 ">
         <Accordion.Item eventKey="0" className="bg-transparent border-0">
           <Accordion.Header
-            className={`items ${
-              router == '/category/display-catgory-data' || router == '/category/add-category'
+            className={`items ${router == '/category/display-catgory-data' || router == '/category/add-category'
                 ? 'default-bg'
                 : 'bg-transparent'
-            }`}
+              }`}
           >
             Categories
           </Accordion.Header>
@@ -46,9 +45,16 @@ function Main() {
         </Accordion.Item>
       </Accordion>
       <div className="ps-4 py-3 items text-white">
-        <FontAwesomeIcon icon={faFillDrip} style={{ color: '#2f74c8' }} width={25} height={25}/>
+        <FontAwesomeIcon icon={faFillDrip} style={{ color: '#2f74c8' }} width={25} height={25} />
         <span className="ms-2">Colors</span>
       </div>
+      <Link href='/image'>
+        <div className="ps-4 py-3 items text-white">
+          <FontAwesomeIcon icon={faImage} style={{ color: '#2f74c8' }} width={25} height={25} />
+          <span className="ms-2">Images</span>
+        </div>
+      </Link>
+
     </div>
   );
 }
